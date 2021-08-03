@@ -36,7 +36,7 @@
     for (let index = 0; index < number; index++) {
        let randomNumber = Math.floor(Math.random() * this.squares.length);
         if (this.squares[randomNumber] == 0) {
-         this.squares[randomNumber] = Math.random() < 0.8 ? 2 : 4;
+         this.squares[randomNumber] = Math.random() < 0.9 ? 2 : 4;
       //checkGameOver();
     } else this.generateRandomNumber(1);
     }
@@ -148,7 +148,7 @@
       this.squares[i + this.width * 3] = newColumn[3];
     }
   },
-     combineRow() {
+     combineRowLeft() {
     for (let i = 0; i < ((this.width * this.width) - 1); i++) {
       if (this.squares[i] === this.squares[i + 1]) {
         let combinedTotal = this.squares[i] + this.squares[i + 1];
@@ -161,9 +161,33 @@
     }
    // checkWin();
   },
+combineRowRight() {
+    for (let i = ((this.width * this.width) - 1); i >= 0 ; i--) {
+      if (this.squares[i] === this.squares[i + 1]) {
+        let combinedTotal = this.squares[i] + this.squares[i + 1];
 
-    combineColumn() {
+        this.squares[i] = combinedTotal;
+        this.squares[i + 1] = 0;
+        //score += combinedTotal;
+        //scoreDisplay = score;
+      }
+    }
+   // checkWin();
+  },
+    combineColumnUp() {
      for (let i = 0; i < ((this.width * this.width) - this.width); i++) {
+      if (this.squares[i] === this.squares[i + this.width]) {
+        let combinedTotal = this.squares[i] +this.squares[i + this.width];
+        this.squares[i] = combinedTotal;
+        this.squares[i + this.width] = 0;
+        //score += combinedTotal;
+        //scoreDisplay = score;
+      }
+    }
+   // checkWin();
+  },
+     combineColumnDown() {
+     for (let i = ((this.width * this.width) - this.width); i>=0 ; i--) {
       if (this.squares[i] === this.squares[i + this.width]) {
         let combinedTotal = this.squares[i] +this.squares[i + this.width];
         this.squares[i] = combinedTotal;
@@ -177,7 +201,7 @@
   keyRight() {
     let previous = this.squares.map((num) => num).toString(); // get the numbers on the grid
     this.moveRight();
-    this.combineRow();
+    this.combineRowRight();
     this.moveRight();
     let nowo = this.squares.map((num) => num).toString(); // get the number of the grid to see changes
     if (previous != nowo) {
@@ -188,7 +212,7 @@
     keyLeft() {
     let previous = this.squares.map((num) => num).toString(); // get the numbers on the grid
     this.moveLeft();
-    this.combineRow();
+    this.combineRowLeft();
     this.moveLeft();
     let nowo = this.squares.map((num) => num).toString(); // get the number of the grid to see changes
     if (previous != nowo) {
@@ -200,7 +224,7 @@
    keyDown() {
     let previous = this.squares.map((num) => num).toString(); // get the numbers on the grid
     this.moveDown();
-    this.combineColumn();
+    this.combineColumnDown();
     this.moveDown();
     let nowo = this.squares.map((num) => num).toString(); // get the number of the grid to see changes
     if (previous != nowo) {
@@ -212,7 +236,7 @@
   keyUp() {
     let previous = this.squares.map((num) => num).toString(); // get the numbers on the grid
     this.moveUp();
-    this.combineColumn();
+    this.combineColumnUp();
     this.moveUp();
     let nowo = this.squares.map((num) => num).toString();
     if (previous != nowo) {
