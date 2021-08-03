@@ -1,26 +1,23 @@
 <template>
- <Button></Button>
- <Title></Title>
- <Grid></Grid>
-
+  <Game />
 </template>
 
 <script>
-import Button from "./components/Button.vue"
-import Title from "./components/Title.vue"
-import Grid from "./components/Grid.vue"
-
+import Game from "./components/Game.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-  Button,
-  Title,
-  Grid,
-  }
-}
+    Game,
+  },
+};
 </script>
 
 <style>
-#app {
+body {
+  background: rgb(255, 228, 212);
+  display: flex;
+  justify-content: center;
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  color: #6e6e6e;
 }
 </style>

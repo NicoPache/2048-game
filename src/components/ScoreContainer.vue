@@ -1,16 +1,14 @@
 <template>
-  <section class="buttonContainer">
-    <button class="button">
-      <span></span>
-      <p>new game</p>
-    </button>
+  <section class="container">
+    <h1>Score</h1>
+    <h2>0</h2>
   </section>
 </template>
 
 <script lang="js">
 
   export default  {
-    name: 'Button',
+    name: 'ScoreContainer',
     props: [],
     mounted () {
 
@@ -30,18 +28,15 @@
 </script>
 
 <style scoped lang="css">
-.button {
+.container {
   width: 150px;
-  height: 50px;
+  height: 100px;
   background-color: white;
   color: #6e6e6e;
   overflow: hidden;
-  font-size: 18px;
-  font-weight: 500;
-  text-transform: uppercase;
-  cursor: pointer;
   border: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
