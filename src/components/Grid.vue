@@ -54,7 +54,7 @@ export default  {
 
     moveRight() {
       for (let i = 0; i < this.width * this.width; i++) {
-        if (i % 4 === 0) {
+        if (i % this.width === 0) {
           let totalOne = this.squares[i];
           let totalTwo = this.squares[i + 1];
           let totalThree = this.squares[i + 2];
@@ -162,7 +162,7 @@ export default  {
 
     combineRowLeft() {
       for (let i = 0; i < ((this.width * this.width) - 1); i++) {
-        if (this.squares[i] === this.squares[i + 1]) {
+        if ((i % 4 !== 3)&&this.squares[i] === this.squares[i + 1]) {
           let combinedTotal = this.squares[i] + this.squares[i + 1];
 
           this.squares[i] = combinedTotal;
@@ -176,7 +176,7 @@ export default  {
 
     combineRowRight() {
       for (let i = ((this.width * this.width) - 1); i >= 0 ; i--) {
-        if (this.squares[i] === this.squares[i + 1]) {
+        if ((i % 4 !== 3) && this.squares[i] === this.squares[i + 1]) {
           let combinedTotal = this.squares[i] + this.squares[i + 1];
 
           this.squares[i] = combinedTotal;
