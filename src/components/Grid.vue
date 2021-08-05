@@ -23,6 +23,7 @@ export default  {
   mounted () {
     this.createBoard()
     window.addEventListener("keyup", this.gameMove);
+
   },
 
   data () {
@@ -161,56 +162,105 @@ export default  {
     },
 
     combineRowLeft() {
+      let added=0;
+      this.$store.dispatch('setAddedScore', 0)
       for (let i = 0; i < ((this.width * this.width) - 1); i++) {
         if ((i % 4 !== 3)&&this.squares[i] === this.squares[i + 1]) {
           let combinedTotal = this.squares[i] + this.squares[i + 1];
-
+          if (combinedTotal != 0) {
+            added += combinedTotal
+          }
           this.squares[i] = combinedTotal;
           this.squares[i + 1] = 0;
-          //score += combinedTotal;
-          //scoreDisplay = score;
+
+
         }
       }
+      this.$store.dispatch('incrementScore', added)
+      this.$store.dispatch('setAddedScore', added)
+      this.$store.state.isAdded = true;
+      setTimeout(() => {
+        this.$store.state.isAdded = false;
+      }, 400);
+
       // checkWin();
     },
 
     combineRowRight() {
+      let added=0;
+      this.$store.dispatch('setAddedScore', 0)
       for (let i = ((this.width * this.width) - 1); i >= 0 ; i--) {
         if ((i % 4 !== 3) && this.squares[i] === this.squares[i + 1]) {
           let combinedTotal = this.squares[i] + this.squares[i + 1];
-
+          if (combinedTotal != 0) {
+            added += combinedTotal
+          }
           this.squares[i] = combinedTotal;
           this.squares[i + 1] = 0;
-          //score += combinedTotal;
-          //scoreDisplay = score;
+
         }
       }
+
+      this.$store.dispatch('incrementScore', added)
+      this.$store.dispatch('setAddedScore', added)
+      this.$store.state.isAdded = true;
+      setTimeout(() => {
+        this.$store.state.isAdded = false;
+      }, 400);
+
+
       // checkWin();
     },
 
     combineColumnUp() {
+      let added=0;
+      this.$store.dispatch('setAddedScore', 0)
       for (let i = 0; i < ((this.width * this.width) - this.width); i++) {
         if (this.squares[i] === this.squares[i + this.width]) {
           let combinedTotal = this.squares[i] +this.squares[i + this.width];
+          if (combinedTotal != 0) {
+            added += combinedTotal
+          }
           this.squares[i] = combinedTotal;
           this.squares[i + this.width] = 0;
-          //score += combinedTotal;
-          //scoreDisplay = score;
+
         }
       }
+      this.$store.dispatch('incrementScore', added)
+      this.$store.dispatch('setAddedScore', added)
+
+      this.$store.state.isAdded = true;
+      setTimeout(() => {
+        this.$store.state.isAdded = false;
+      }, 400);
+
       // checkWin();
     },
 
     combineColumnDown() {
+      let added=0;
+      this.$store.dispatch('setAddedScore', 0)
       for (let i = ((this.width * this.width) - this.width); i>=0 ; i--) {
         if (this.squares[i] === this.squares[i + this.width]) {
           let combinedTotal = this.squares[i] +this.squares[i + this.width];
+          if (combinedTotal != 0) {
+            added += combinedTotal
+          }
           this.squares[i] = combinedTotal;
           this.squares[i + this.width] = 0;
-          //score += combinedTotal;
-          //scoreDisplay = score;
+
+
         }
       }
+      this.$store.dispatch('incrementScore', added)
+      this.$store.dispatch('setAddedScore', added)
+
+      this.$store.state.isAdded = true;
+      setTimeout(() => {
+        this.$store.state.isAdded = false;
+      }, 400);
+
+
       // checkWin();
     },
 

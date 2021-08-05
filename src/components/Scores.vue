@@ -1,7 +1,6 @@
 <template>
   <section class="container">
     <ScoreContainer />
-    <ScoreContainer />
   </section>
 </template>
 
